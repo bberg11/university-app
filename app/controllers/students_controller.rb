@@ -10,7 +10,8 @@ class StudentsController < ApplicationController
       flash[:success] = "Thanks for signing up, #{@student.name}"
       redirect_to student_path(@student)
     else
-      flash[:error] = "There was an error creating your profile"
+      errors = @student.errors.full_messages.join(", and ")
+      flash[:error] = "There was an error creating your profile. <br/> #{errors}"
       render "new"
     end
   end

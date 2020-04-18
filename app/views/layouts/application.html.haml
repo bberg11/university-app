@@ -25,7 +25,7 @@
           .col.s12
             .card-panel{ class: type == 'error' ? 'deep-orange' : 'teal' }
               .white-text
-                = message
+                = message.html_safe
                 %span.badge.white-text
                   %i.material-icons.message-close-button{ data: {message_close_button: '' } } close
 
