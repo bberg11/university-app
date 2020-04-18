@@ -3,7 +3,7 @@
     %h1.center-align Sign Up
 
 .row
-  = form_with model: @student, class: 'col s6 offset-s3' do |form|
+  = form_with model: @student, local: true, class: 'col s6 offset-s3' do |form|
     .row
       .input-field.col.s12
         = form.text_field :name, required: true
