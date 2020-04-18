@@ -9,3 +9,11 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+.card-content--min-height {
+  min-height: 165px;
+
+  .card-title {
+    min-height: 65px;
+  }
+}
