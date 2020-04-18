@@ -1,0 +1,22 @@
+.row
+  = form_with model: @student, local: true, class: 'col s6 offset-s3' do |form|
+    .row
+      .input-field.col.s12
+        = form.text_field :name, required: true
+        = form.label :name
+    .row
+      .input-field.col.s12
+        = form.email_field :email, required: true
+        = form.label :email
+    .row
+      .input-field.col.s12
+        = form.password_field :password, required: @student.new_record?
+        = form.label :password
+    .row
+      .col.s12.right-align
+        = button_tag type: 'submit', class: 'btn waves-effect waves-light' do
+          - if @student.new_record?
+            Submit
+          - else
+            Update
+          %i.material-icons.right send
