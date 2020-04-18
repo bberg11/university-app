@@ -1,0 +1,41 @@
+!!!
+%html
+  %head
+    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }
+    %title Tech University
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body
+    %header
+      %nav
+        .container
+          .nav-wrapper
+            = link_to 'Tech University', root_path, class: 'brand-logo right'
+            %ul#nav-mobile.left.hide-on-med-and-down
+              %li= link_to 'Courses', '#'
+              %li= link_to 'Enrollments', '#'
+              %li= link_to 'Account', '#'
+
+    %main
+      .container
+        = yield
+
+    %footer.page-footer
+      .container
+        .row
+          .col.l6.s12
+            %h5.white-text Tech University
+            %p.grey-text.text-lighten-4 The future of development training
+          .col.l4.offset-l2.s12
+            %h5.white-text Information
+            %ul
+              %li= link_to 'Help', '#', class: 'grey-text text-lighten-3'
+              %li= link_to 'About', '#', class: 'grey-text text-lighten-3'
+              %li= link_to 'Contact Us', '#', class: 'grey-text text-lighten-3'
+      .footer-copyright
+        .container
+          © #{Date.current.year} Tech University
+
