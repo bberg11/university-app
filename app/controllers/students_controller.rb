@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+  before_action :set_student, only: [:edit, :show, :update]
+
   def index
     @students = Student.all
   end
@@ -10,8 +12,7 @@ class StudentsController < ApplicationController
       flash[:success] = "Thanks for signing up, #{@student.name}"
       redirect_to student_path(@student)
     else
-      errors = @student.errors.full_messages.join(", and ")
-      flash[:error] = "There was an error creating your profile. <br/> #{errors}"
+      flash[:error] = "There was an error creating your profile. <br/> #{errors_string}"
       render "new"
     end
   end
@@ -21,27 +22,30 @@ class StudentsController < ApplicationController
   end
 
   def edit
-    @student = Student.find(params[:id])
   end
 
   def show
-    @student = Student.find(params[:id])
   end
 
   def update
-    @student = Student.find(params[:id])
-
     if @student.update(student_params)
       flash[:success] = "#{@student.name}'s profile has been updated"
       redirect_to student_path(@student)
     else
-      errors = @student.errors.full_messages.join(", and ")
-      flash[:error] = "There was an error updating your profile. <br/> #{errors}"
+      flash[:error] = "There was an error updating your profile. <br/> #{errors_string}"
       render "edit"
     end
   end
 
   private
+
+  def set_student
+    @student = Student.find(params[:id])
+  end
+
+  def errors_string
+    @student.errors.full_messages.join(", and ")
+  end
 
   def student_params
     params.require(:student).permit(:name, :email, :password)
