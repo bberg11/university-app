@@ -10,6 +10,7 @@ class StudentsController < ApplicationController
 
     if @student.save
       flash[:success] = "Thanks for signing up, #{@student.name}"
+      session[:user_id] = @student.id
       redirect_to student_path(@student)
     else
       flash[:error] = "There was an error creating your profile. <br/> #{errors_string}"
