@@ -15,9 +15,14 @@
           .nav-wrapper
             = link_to 'Tech University', root_path, class: 'brand-logo right'
             %ul#nav-mobile.left.hide-on-med-and-down
-              %li= link_to 'Courses', '#'
+              %li= link_to 'Courses', root_path
               %li= link_to 'Enrollments', '#'
-              %li= link_to 'Account', '#'
+              - if logged_in?
+                %li= link_to 'Profile', student_path(current_user)
+                %li= link_to 'Sign Out', login_path(current_user), method: :delete
+              - else
+                %li= link_to 'Sign In', new_login_path
+                %li= link_to 'Sign Up', new_student_path
 
     %main
       - flash.each do |type, message|
