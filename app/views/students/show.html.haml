@@ -9,5 +9,6 @@
         %span.card-title #{@student.name}
         %p= @student.email
         %p [ENROLLMENTS PLACEHOLDER]
-      .card-action
-        = link_to 'Edit', edit_student_path(@student)
+      - if logged_in? && current_user == @student
+        .card-action
+          = link_to 'Edit', edit_student_path(@student)

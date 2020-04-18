@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:edit, :show, :update]
+  before_action :require_same_user, only: [:edit, :update]
 
   def index
     @students = Student.all
@@ -50,5 +51,12 @@ class StudentsController < ApplicationController
 
   def student_params
     params.require(:student).permit(:name, :email, :password)
+  end
+
+  def require_same_user
+    if current_user != @student
+      flash[:error] = "You do not have permission to perform this action"
+      redirect_to new_login_path
+    end
   end
 end
