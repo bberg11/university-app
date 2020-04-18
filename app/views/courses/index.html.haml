@@ -10,5 +10,9 @@
           %span.card-title #{course.short_name}: #{course.name}
           %p= course.description
         .card-action
-          = link_to 'Enroll', '#'
-          = link_to 'Info', '#'
+          = link_to 'Info', course_path(course)
+          - if logged_in?
+            - if current_user.courses.include?(course)
+              ENROLLED
+            - else
+              = link_to 'Enroll', enroll_in_course_path(course_id: course.id), method: :post

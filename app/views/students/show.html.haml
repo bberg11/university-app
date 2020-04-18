@@ -8,7 +8,12 @@
       .card-content.white-text
         %span.card-title #{@student.name}
         %p= @student.email
-        %p [ENROLLMENTS PLACEHOLDER]
+        %br
+        %p Course Enrollments:
+        %ul
+          - @student.courses.each do |course|
+            %li
+              = link_to "#{course.short_name}: #{course.name}", course_path(course), class: 'white-text'
       - if logged_in? && current_user == @student
         .card-action
           = link_to 'Edit', edit_student_path(@student)
