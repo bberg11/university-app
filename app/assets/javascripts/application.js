@@ -18,7 +18,5 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function () {
-  $('[data-message-close-button]').on('click', function (event) {
-    $(event.currentTarget).closest('.row').remove();
-  });
+  $('[data-flash-message]').delay(4000).fadeOut();
 });
