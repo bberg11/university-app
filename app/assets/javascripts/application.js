@@ -14,4 +14,11 @@
 //= require activestorage
 //= require turbolinks
 //= require materialize-sprockets
+//= require jquery
 //= require_tree .
+
+$(document).on('turbolinks:load', function () {
+  $('[data-message-close-button]').on('click', function (event) {
+    $(event.currentTarget).closest('.row').remove();
+  });
+});

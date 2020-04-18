@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 gem "haml-rails", "~> 2.0"
+gem "jquery-rails"
 gem "materialize-sass", "~> 1.0.0"
 gem "material_icons"
 gem "hirb"

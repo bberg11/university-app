@@ -20,6 +20,15 @@
               %li= link_to 'Account', '#'
 
     %main
+      - flash.each do |type, message|
+        .row
+          .col.s12
+            .card-panel{ class: type == 'error' ? 'deep-orange' : 'teal' }
+              .white-text
+                = message
+                %span.badge.white-text
+                  %i.material-icons.message-close-button{ data: {message_close_button: '' } } close
+
       .container
         = yield
 
